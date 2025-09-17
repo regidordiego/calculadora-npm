@@ -1,5 +1,4 @@
-// Nota: instala primero el paquete con `npm i calcito-aritmetica-diego24`.
-// Si usas otro nombre al publicar, actualiza la ruta debajo.
+
 import { add, subtract, multiply, divide } from './node_modules/mi-calculadora-diego/src/index.js';
 
 const inputEl = document.getElementById('input');
@@ -24,14 +23,14 @@ function isOperator(ch) {
 }
 
 function canAppendDot() {
-  // Evita dos '.' en el mismo número
+  
   const parts = buffer.split(/[+\-×÷]/);
   const last = parts[parts.length - 1];
   return !last.includes('.');
 }
 
 function sanitizeBuffer() {
-  // Si acaba en operador, lo quitamos para evaluar
+  
   if (buffer.length && isOperator(buffer[buffer.length - 1])) {
     buffer = buffer.slice(0, -1);
   }
@@ -44,11 +43,11 @@ function tokenize(expr) {
     const ch = expr[i];
     if (ch === ' ') { i++; continue; }
     if (isOperator(ch)) {
-      // Soportar negativos unarios: si es '-' y está al inicio o tras otro operador, se trata como parte del número
+      
       const prev = tokens[tokens.length - 1];
       const isUnaryMinus = ch === '-' && (tokens.length === 0 || (typeof prev === 'string' && isOperator(prev)));
       if (isUnaryMinus) {
-        // adjuntar al número que sigue
+        
         let j = i + 1;
         let numStr = '-';
         while (j < expr.length && /[0-9.]/.test(expr[j])) {
@@ -119,7 +118,7 @@ function evaluateExpression(expr) {
   return shuntingYard(tokens);
 }
 
-// Eventos de UI
+
 numberEls.forEach(el => {
   el.addEventListener('click', () => {
     const val = el.textContent;
@@ -134,9 +133,9 @@ numberEls.forEach(el => {
 operatorEls.forEach(el => {
   el.addEventListener('click', () => {
     const op = el.textContent;
-    if (!buffer && op !== '-') return; // evitar operador al inicio, salvo '-'
+    if (!buffer && op !== '-') return;
     if (buffer && isOperator(buffer[buffer.length - 1])) {
-      // reemplazar operador si el último también lo era
+
       buffer = buffer.slice(0, -1) + op;
       render();
     } else {
@@ -167,5 +166,5 @@ clearEl.addEventListener('click', () => {
   render();
 });
 
-// Render inicial
+
 render();
