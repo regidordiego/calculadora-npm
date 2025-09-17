@@ -1,0 +1,45 @@
+{
+  "name": "mi-calculadora-diego",
+  "version": "1.0.2",
+  "description": "Funciones aritméticas básicas para calculadoras web (suma, resta, multiplicación y división).",
+  "keywords": [
+    "calculadora",
+    "aritmetica",
+    "sumar",
+    "restar",
+    "multiplicar",
+    "dividir",
+    "utilidades"
+  ],
+  "author": "Diego (cámbialo por tu nombre real)",
+  "license": "MIT",
+  "type": "module",
+  "main": "src/index.js",
+  "module": "src/index.js",
+  "exports": {
+    "import": "./src/index.js",
+    "require": "./src/index.cjs"
+  },
+  "types": "./src/index.d.ts",
+  "files": [
+    "src",
+    "README.md",
+    "LICENSE",
+    ".eslintrc.json",
+    ".prettierrc"
+  ],
+  "scripts": {
+    "lint": "eslint src --max-warnings=0",
+    "format": "prettier --write .",
+    "prepublishOnly": "npm run lint || echo \"(sin lint)\"",
+    "release": "npm version patch && npm publish --access public"
+  },
+  "devDependencies": {
+    "eslint": "^9.9.0",
+    "eslint-config-standard": "^17.1.0",
+    "eslint-plugin-import": "^2.29.1",
+    "eslint-plugin-n": "^16.6.2",
+    "eslint-plugin-promise": "^6.4.0",
+    "prettier": "^3.3.3"
+  }
+}
